@@ -7,12 +7,5 @@ const router = jsonServer.router(db);
 
 server.use(jsonServer.bodyParser);
 
-server.post("/boards", ({ body }) => {
-  const { id } = body;
-  router.db.boards.items[id] = body;
-  router.db.boards.ids = [id, ...db.boards.ids];
-  router.db.write();
-});
-
 server.use(router);
 server.listen(3000);
