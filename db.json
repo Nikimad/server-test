@@ -1,4 +1,6 @@
 {
-  "boards": [],
-  "tasks": []
+  "boards": {
+    "items": {},
+    "ids": []
+  }
 }
