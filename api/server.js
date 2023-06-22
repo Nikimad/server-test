@@ -5,9 +5,11 @@ export const server = jsonServer.create();
 const db = JSON.parse(fs.readFileSync("db.json"));
 const router = jsonServer.router(db);
 
-server.post("/boards", (req, res, next) => {
-  db.boards.ids = [req.body.id, ...db.boards.ids];
-  next();
+server.post("/boards", ({ body }) => {
+  const { id } = body;
+  router.db.boards.items[id] = body;
+  router.db.boards.ids = [id, ...db.boards.ids];
+  router.db.write();
 });
 
 server.use(router);
